@@ -139,7 +139,7 @@ For more information, please refer to <http://unlicense.org/>
 #define TICK_CNT 20
 #define CB_CNT (TICK_CNT * 2)
 
-#define CLK_DIVI 5
+#define CLK_DIVI 3
 #define CLK_MICROS 1
 
 typedef struct DMACtrlReg
@@ -337,7 +337,7 @@ void init_pwm()
      * hardware clock to 100 MHZ, then the time taken for `100 * CLK_MICROS` bits
      * is (500 / 100) = 5 us, this is how we control the DMA sampling rate
      */
-    pwm_reg->range1 = 100 * CLK_MICROS;
+    pwm_reg->range1 = 250 * CLK_MICROS;
 
     // enable PWM DMA, raise panic and dreq thresholds to 15
     pwm_reg->dma_cfg = PWM_DMAC_ENAB | PWM_DMAC_PANIC(15) | PWM_DMAC_DREQ(15);
