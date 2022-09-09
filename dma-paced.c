@@ -46,8 +46,8 @@ For more information, please refer to <http://unlicense.org/>
 #define PAGE_SIZE 4096
 
 #define PERI_BUS_BASE 0x7E000000
-#define PERI_PHYS_BASE 0x3F000000
-#define BUS_TO_PHYS(x) ((x) & ~0xC0000000)
+#define PERI_PHYS_BASE 0xFE000000
+#define BUS_TO_PHYS(x) ((x) + 0x80000000)
 
 #define CM_BASE 0x00101000
 #define CM_LEN 0xA8
@@ -414,7 +414,7 @@ int main()
 
     for (size_t i = 0; i < TICK_CNT; i++)
     {
-        printf("DMA %d: %u\n", i, ticks[i]);
+        printf("DMA %ld: %u\n", i, ticks[i]);
     }
 
     dma_end();
